@@ -115,16 +115,25 @@ export default function New({ workspace }) {
   const customStyles = {
     control: (base, state) => ({
       ...base,
-      background: "#f1f5f9",
+      background: "#1E1E24",
       borderRadius: '0.5rem',
-      borderColor: "#94a3b8"
+      borderColor: state.isFocused ? "#F26B21" : "rgba(255,255,255,0.1)",
+      boxShadow: 'none',
+      ':hover': { borderColor: 'rgba(255,255,255,0.2)' },
     }),
-    multiValue: (styles, { data }) => {
-      return {
-        ...styles,
-        backgroundColor: '#dde6f1',
-      };
-    }
+    menu: (base) => ({ ...base, background: "#16161A", border: '1px solid rgba(255,255,255,0.1)' }),
+    option: (base, state) => ({
+      ...base,
+      background: state.isFocused ? 'rgba(242,107,33,0.18)' : 'transparent',
+      color: '#e2e8f0',
+      cursor: 'pointer',
+    }),
+    input: (base) => ({ ...base, color: '#e2e8f0' }),
+    singleValue: (base) => ({ ...base, color: '#e2e8f0' }),
+    placeholder: (base) => ({ ...base, color: 'rgba(255,255,255,0.3)' }),
+    multiValue: (styles) => ({ ...styles, backgroundColor: 'rgba(242,107,33,0.2)' }),
+    multiValueLabel: (styles) => ({ ...styles, color: '#FBBF77' }),
+    multiValueRemove: (styles) => ({ ...styles, color: '#FBBF77', ':hover': { backgroundColor: 'rgba(232,57,43,0.6)', color: '#fff' } }),
   }
 
   useEffect(() => {
@@ -237,22 +246,22 @@ export default function New({ workspace }) {
   return (
     <div className="">
       <Head>
-        <title>Kasm Workspaces</title>
-        <meta name="description" content="List of workspaces for Kasm Webspaces" />
+        <title>{`Add Workspace — ${process.env.name}`}</title>
+        <meta name="description" content={`Build a workspace definition for the ${process.env.name} registry`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='flex flex-col lg:flex-row w-full my-20 max-w-6xl text-sm rounded-xl overflow-hidden mx-auto'>
-        <div className='w-full lg:w-1/2 p-16 bg-slate-300'>
-          <h1 className='text-2xl font-medium mb-2'>Add Workspace</h1>
+      <div className='flex flex-col lg:flex-row w-full my-20 max-w-6xl text-sm rounded-xl overflow-hidden mx-auto border border-white/10 shadow-fire'>
+        <div className='w-full lg:w-1/2 p-16 bg-ink-850'>
+          <h1 className='font-display font-black text-2xl mb-2 text-white'>Add Workspace</h1>
           <div className='flex flex-col'>
-            <p className='mb-8 opacity-70'>This page is designed to allow admins to generate the JSON they need to upload to the "workspaces" directory. It also allows end users to see what settings are needed if they want to manually copy them into a new workspace.</p>
+            <p className='mb-8 text-white/50'>This page is designed to allow admins to generate the JSON they need to upload to the "workspaces" directory. It also allows end users to see what settings are needed if they want to manually copy them into a new workspace.</p>
 
             <label className='mb-2 font-medium'>Icon</label>
-            <input type="file" name="icon" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-slate-100 border border-solid border-slate-400' />
+            <input type="file" name="icon" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-ink-800 text-slate-100 border border-solid border-white/10 outline-none focus:border-fire-orange/70' />
             <p className='mb-6 opacity-70'>Select the image to use, image will be renamed when it's downloaded.</p>
 
             <label className='mb-2 font-medium'>Friendly Name</label>
-            <input ref={friendly_name} name="friendly_name" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-slate-100 border border-solid border-slate-400' />
+            <input ref={friendly_name} name="friendly_name" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-ink-800 text-slate-100 border border-solid border-white/10 outline-none focus:border-fire-orange/70' />
             <p className='mb-6 opacity-70'>This is the name that will show for users</p>
 
             <label className='mb-2 font-medium'>Categories</label>
@@ -268,12 +277,12 @@ export default function New({ workspace }) {
             <p className='mb-6 mt-2 opacity-70'>You can select from the available option or create new ones.</p>
 
             <label className='mb-2 font-medium'>Description</label>
-            <input ref={description} name="description" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-slate-100 border border-solid border-slate-400' />
+            <input ref={description} name="description" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-ink-800 text-slate-100 border border-solid border-white/10 outline-none focus:border-fire-orange/70' />
             <p className='mb-6 opacity-70'>A short description about the workspace</p>
 
             <label className='mb-2 font-medium'>Docker Image</label>
-            <input ref={name} name="name" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-slate-100 border border-solid border-slate-400' />
-            <p className='mb-6 opacity-70'>The docker image to use, i.e. <code className='text-xs p-1 px-2 rounded bg-white/40'>kasmweb/filezilla:develop</code></p>
+            <input ref={name} name="name" onChange={handleChange} className='mb-2 p-2 rounded-lg bg-ink-800 text-slate-100 border border-solid border-white/10 outline-none focus:border-fire-orange/70' />
+            <p className='mb-6 text-white/50'>The docker image to use, i.e. <code className='text-xs p-1 px-2 rounded bg-white/10 text-fire-amber'>kasmweb/filezilla:develop</code></p>
 
             <label className='mb-2 font-medium'>Architecture</label>
             <Select
@@ -292,10 +301,10 @@ export default function New({ workspace }) {
 
           </div>
         </div>
-        <div className='w-full lg:w-1/2 p-16 bg-slate-100'>
+        <div className='w-full lg:w-1/2 p-16 bg-ink-900'>
           <Workspace workspace={combined} icon={icon} inlineImage={inlineImage} />
-          <pre className='my-8 overflow-y-auto text-xs'>{JSON.stringify(displayWorkspace(), null, 2)}</pre>
-          <button onClick={downloadZip} className='p-4 relative z-10 px-5 bg-[#2980b9] border-t border-white/20 border-solid hover:bg-slate-900 transition m-2 rounded items-center text-white/70 flex cursor-pointer'>Download</button>
+          <pre className='my-8 overflow-y-auto text-xs text-white/70 bg-ink-950/60 rounded-lg p-4 border border-white/10'>{JSON.stringify(displayWorkspace(), null, 2)}</pre>
+          <button onClick={downloadZip} className='p-4 relative z-10 px-5 fire-gradient hover:brightness-110 transition shadow-fire m-2 rounded-lg items-center font-semibold text-white flex cursor-pointer'>Download</button>
         </div>
       </div>
     </div>
@@ -317,10 +326,10 @@ function Workspace({ workspace, icon, inlineImage }) {
   }
 
   const installButton = () => {
-    return <button className={"text-xs w-full p-4 py-1 rounded-lg flex justify-center items-center bg-blue-500 font-bold text-white"}>Install</button>
+    return <button className={"text-xs w-full p-4 py-1 rounded-lg flex justify-center items-center fire-gradient font-bold text-white"}>Install</button>
   }
   const editButton = () => {
-    return <div className="text-xs text-color w-full p-4 py-1 rounded-lg bg-black/5 flex justify-center items-center">Edit</div>
+    return <div className="text-xs text-color w-full p-4 py-1 rounded-lg bg-white/5 text-white/70 flex justify-center items-center">Edit</div>
   }
   const official = () => {
     return
@@ -329,7 +338,7 @@ function Workspace({ workspace, icon, inlineImage }) {
   const workspaceExists = false
 
   return (
-    <div className={"rounded-xl group w-full shadow max-w-xs relative overflow-hidden h-[100px] border border-solid flex flex-col justify-between bg-slate-300 border-slate-400/50"}>
+    <div className={"rounded-xl group w-full shadow max-w-xs relative overflow-hidden h-[100px] border border-solid flex flex-col justify-between bg-ink-800 border-white/10 text-slate-200"}>
       <div className={"absolute top-0 left-0 right-0 h-[200px] transition-all" + (showDescription ? ' -translate-y-1/2' : '')}>
         <div onClick={() => setShowDescription(true)} className={"h-[100px] p-4 relative overflow-hidden cursor-pointer"}>
           <img className="h-[90px] group-hover:scale-150 transition-all absolute left-2 top-1" src={workspace.image_src} onError={(e) => {
@@ -340,13 +349,13 @@ function Workspace({ workspace, icon, inlineImage }) {
             <div className=" h-8"></div>
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 bg-slate-400/20 h-8 text-[10px] flex items-center justify-center">
+          <div className="absolute bottom-0 left-0 right-0 bg-black/30 h-8 text-[10px] flex items-center justify-center">
             {workspace.architecture && workspace.architecture.map((arch, index) => (
-              <span key={'arch' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-slate-400/70">{arch}</span>
+              <span key={'arch' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-white/10">{arch}</span>
             ))}
 
             {workspace.categories.map((cat, index) => (
-              <span key={'cat' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-slate-300/90">{cat}</span>
+              <span key={'cat' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-fire-orange/20 text-fire-amber">{cat}</span>
             ))}
           </div>
           {workspaceExists && workspaceExists.enabled === true && workspaceExists.available === false && (
@@ -354,8 +363,8 @@ function Workspace({ workspace, icon, inlineImage }) {
           )}
         </div>
         <div className="h-[100px] text-xs relative p-2 pl-4 flex">
-          <button className="absolute right-2 top-2 bg-slate-100 rounded-full flex justify-center items-center h-6 w-6" onClick={() => setShowDescription(false)}>
-            <svg style={{ height: '14px' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" /></svg>
+          <button className="absolute right-2 top-2 bg-ink-700 text-white rounded-full flex justify-center items-center h-6 w-6" onClick={() => setShowDescription(false)}>
+            <svg style={{ height: '14px', fill: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" /></svg>
           </button>
           <div className="flex flex-col flex-grow"><div className="font-bold">{workspace.friendly_name}</div> {workspace.description}</div>
           <div className="flex flex-col justify-end gap-1">

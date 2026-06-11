@@ -69,22 +69,22 @@ export default function Home({ searchText }) {
   return (
     <div className="">
       <Head>
-        <title>Kasm Workspaces</title>
-        <meta name="description" content="List of workspaces for Kasm Webspaces" />
+        <title>{`${process.env.name} — Workspaces Registry`}</title>
+        <meta name="description" content={`${process.env.name} registry of workspaces for Kasm Workspaces`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
 
       <main className="p-8 py-10 xl:px-20">
         <h1 className='flex flex-wrap-reverse uppercase tracking-widest justify-center mb-10 gap-5'>
-        <span className='flex items-center text-lg bg-slate-100/90 rounded overflow-hidden shadow'>
-            <span className='flex px-3 text-xs opacity-100'>Workspaces</span>
-            <span className='text-white p-3 py-1 flex bg-[#2980b9]'>{workspaces && workspaces.workspacecount}</span>
+        <span className='flex items-center text-lg bg-ink-800 border border-white/10 rounded-lg overflow-hidden shadow'>
+            <span className='flex px-3 text-xs font-semibold text-white/60'>Workspaces</span>
+            <span className='text-white font-bold p-3 py-1 flex fire-gradient'>{workspaces && workspaces.workspacecount}</span>
           </span>
-          <span className='flex items-center text-lg bg-slate-100/90 rounded overflow-hidden shadow'>
-            <span className='flex px-3 text-xs opacity-100'>Kasm Version</span>
-            <span className='text-white gap-3 p-3 py-1 flex items-center bg-[#2980b9]'>{versions && versions.map((v) => (
-              <div className={'cursor-pointer ' + (+v === +version ? 'text-white' : 'text-white/50 text-xs')} key={v} onClick={() => updateVersion(v)}>{v}</div>
+          <span className='flex items-center text-lg bg-ink-800 border border-white/10 rounded-lg overflow-hidden shadow'>
+            <span className='flex px-3 text-xs font-semibold text-white/60'>Kasm Version</span>
+            <span className='text-white gap-3 p-3 py-1 flex items-center fire-gradient'>{versions && versions.map((v) => (
+              <div className={'cursor-pointer transition ' + (+v === +version ? 'text-white font-bold' : 'text-white/60 text-xs hover:text-white')} key={v} onClick={() => updateVersion(v)}>{v}</div>
             ))}</span>
           </span>
         </h1>

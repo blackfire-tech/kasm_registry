@@ -19,40 +19,26 @@ export default function Header({ searchText, changeSearch }) {
   const getLink = (path) => `${router.basePath}${path}`;
 
   return (
-    <header className="relative font-light overflow-hidden bg-gradient-to-tr from-[#162d48] to-[#2980b9] p-8 xl:px-32 text-white gap-5 md:gap-0 flex flex-wrap justify-center items-center">
+    <header className="relative overflow-hidden border-b border-white/10 bg-ink-900 p-8 xl:px-32 text-white gap-5 md:gap-0 flex flex-wrap justify-center items-center">
+      <div className="absolute inset-x-0 top-0 h-1 fire-gradient" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[680px] -translate-x-1/2 rounded-full bg-fire-orange/20 blur-3xl" />
       <Bubbles />
-      <div className='relative z-10'>
-        <div className="text-3xl">{process.env.name}</div>
-        <div className="text-sm uppercase w-full flex justify-between">
-          <span className='opacity-70'>W</span>
-          <span className='opacity-70'>o</span>
-          <span className='opacity-70'>r</span>
-          <span className='opacity-70'>k</span>
-          <span className='opacity-70'>s</span>
-          <span className='opacity-70'>p</span>
-          <span className='opacity-70'>a</span>
-          <span className='opacity-70'>c</span>
-          <span className='opacity-70'>e</span>
-          <span>&nbsp;</span>
-          <span className='opacity-40'>R</span>
-          <span className='opacity-40'>e</span>
-          <span className='opacity-40'>g</span>
-          <span className='opacity-40'>i</span>
-          <span className='opacity-40'>s</span>
-          <span className='opacity-40'>t</span>
-          <span className='opacity-40'>r</span>
-          <span className='opacity-40'>y</span>
+      <div className='relative z-10 flex items-center gap-4'>
+        <img src={getLink('/img/blackfire-mark.png')} alt={process.env.name} className="h-14 w-14 shrink-0 object-contain drop-shadow-[0_4px_14px_rgba(242,107,33,0.45)]" />
+        <div>
+          <div className="font-display font-black text-3xl leading-none tracking-tight">{process.env.name}</div>
+          <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.32em] fire-text">Workspaces Registry</div>
         </div>
       </div>
-      <nav className='relative z-10 mx-12'>
-        <a href={getLink("/")} className={'p-4 inline-block rounded-full border border-solid' + (router.pathname == "/" ? ' border-white/30' : ' border-transparent')}>Library</a>
-        <Link href="/new/" className={'p-4 inline-block rounded-full border border-solid' + (router.pathname.startsWith("/new") ? ' bg-black/10 border-white/30' : ' border-transparent')}>New</Link>
+      <nav className='relative z-10 mx-12 flex gap-1'>
+        <a href={getLink("/")} className={'px-5 py-2.5 inline-block rounded-full text-sm font-medium transition border border-solid' + (router.pathname == "/" ? ' fire-gradient border-transparent text-white shadow-fire' : ' border-white/10 text-white/70 hover:text-white hover:border-white/30')}>Library</a>
+        <Link href="/new/" className={'px-5 py-2.5 inline-block rounded-full text-sm font-medium transition border border-solid' + (router.pathname.startsWith("/new") ? ' fire-gradient border-transparent text-white shadow-fire' : ' border-white/10 text-white/70 hover:text-white hover:border-white/30')}>New</Link>
       </nav>
       <div className="grow flex justify-center relative z-10">
-        <div className='bg-black/10 shadow border border-1 border-white/30 rounded flex w-full max-w-md'>
+        <div className='bg-ink-950/70 border border-white/10 rounded-lg flex w-full max-w-md focus-within:border-fire-orange/70 transition'>
           <input
             name="search"
-            className='bg-transparent shadow-inner text-lg font-light w-full p-4 placeholder:text-white/40'
+            className='bg-transparent text-base w-full p-4 outline-none placeholder:text-white/30'
             placeholder='Search for workspace'
             type="text"
             value={searchText}
@@ -62,7 +48,7 @@ export default function Header({ searchText, changeSearch }) {
         </div>
 
       </div>
-      <button className='p-4 relative z-10 px-5 bg-[#162d48]/70 border-t border-white/20 border-solid hover:bg-slate-900 transition shadow-lg m-2 rounded items-center text-white/70 flex cursor-pointer' onClick={() => { copyToClipboard() }}>
+      <button className='p-4 relative z-10 px-5 fire-gradient hover:brightness-110 transition shadow-fire m-2 rounded-lg items-center font-semibold text-white flex cursor-pointer' onClick={() => { copyToClipboard() }}>
         <span className="mr-3">Workspace Registry Link</span>
         <svg style={{ height: '14px', fill: '#fff' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z" /></svg>
       </button>
