@@ -25,10 +25,7 @@
     {
       "version": "1.17.x",
       "image": "kasmweb/chromium:develop",
-      "uncompressed_size_mb": 2170,
-      "available_tags": [
-        "develop"
-      ]
+      "uncompressed_size_mb": 2170
     }
   ]
 }
