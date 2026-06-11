@@ -26,6 +26,16 @@
       "version": "1.17.x",
       "image": "kasmweb/chromium:develop",
       "uncompressed_size_mb": 2170
+    },
+    {
+      "version": "1.18.x",
+      "image": "kasmweb/chromium:develop",
+      "uncompressed_size_mb": 2170
+    },
+    {
+      "version": "1.19.x",
+      "image": "kasmweb/chromium:develop",
+      "uncompressed_size_mb": 2170
     }
   ]
 }

@@ -35,6 +35,11 @@
       "version": "1.18.x",
       "image": "ghcr.io/blackfire-tech/kasm-session:kasm",
       "uncompressed_size_mb": 2600
+    },
+    {
+      "version": "1.19.x",
+      "image": "ghcr.io/blackfire-tech/kasm-session:kasm",
+      "uncompressed_size_mb": 2600
     }
   ]
 }
