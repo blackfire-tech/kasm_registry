@@ -1,0 +1,30 @@
+{
+  "friendly_name": "Session",
+  "name": "ghcr.io/blackfire-tech/kasm-session:kasm",
+  "description": "Session is a decentralised, end-to-end encrypted, onion-routed private messenger that needs no phone number or email to sign up.",
+  "image_src": "session.png",
+  "docker_registry": "https://ghcr.io/",
+  "run_config": {
+    "hostname": "kasm"
+  },
+  "exec_config": {
+    "go": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --go --url \"$KASM_URL\"'"
+    },
+    "assign": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --assign --url \"$KASM_URL\"'"
+    }
+  },
+  "categories": [
+    "Messaging"
+  ],
+  "architecture": [
+    "amd64"
+  ],
+  "compatibility": [
+    "1.16.x",
+    "1.17.x",
+    "1.18.x"
+  ],
+  "uncompressed_size_mb": 2600
+}
