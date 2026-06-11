@@ -1,4 +1,4 @@
-import Waves from '../components/Waves'
+import Triangles from '../components/Triangles'
 import Link from 'next/link'
 import { useRouter } from "next/router";
 import { NotificationManager } from 'react-notifications';
@@ -22,7 +22,7 @@ export default function Header({ searchText, changeSearch }) {
     <header className="relative overflow-hidden border-b border-white/10 bg-ink-900 p-8 xl:px-32 text-white gap-5 md:gap-0 flex flex-wrap justify-center items-center">
       <div className="absolute inset-x-0 top-0 h-1 fire-gradient" />
       <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[680px] -translate-x-1/2 rounded-full bg-fire-orange/20 blur-3xl" />
-      <Waves />
+      <Triangles />
       <div className='relative z-10 flex items-center gap-4'>
         <img src={getLink('/img/blackfire-mark.png')} alt={process.env.name} className="h-14 w-14 shrink-0 object-contain drop-shadow-[0_4px_14px_rgba(242,107,33,0.45)]" />
         <div>
