@@ -24,7 +24,7 @@ export default function Header({ searchText, changeSearch }) {
       <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[680px] -translate-x-1/2 rounded-full bg-fire-orange/20 blur-3xl" />
       <Triangles />
       <div className='relative z-10 flex items-center gap-4'>
-        <img src={getLink('/img/blackfire-mark.png')} alt={process.env.name} className="h-14 w-14 shrink-0 object-contain drop-shadow-[0_4px_14px_rgba(242,107,33,0.45)]" />
+        <img src="https://branding.blackfire.tech/Blackfire/SVG%20-%20for%20web/blackfire-logomark-colour.svg" alt={process.env.name} className="h-14 w-14 shrink-0 object-contain drop-shadow-[0_4px_14px_rgba(242,107,33,0.45)]" />
         <div>
           <div className="font-display font-black text-3xl leading-none tracking-tight">{process.env.name}</div>
           <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.32em] fire-text">Workspaces Registry</div>
