@@ -21,7 +21,11 @@ const nextConfig = {
     name: 'Blackfire Technology',
     description:
       "Blackfire Technology's Kasm Workspaces registry — privacy-first apps and custom workspaces.",
-    icon: 'https://blackfire-tech.github.io/kasm_registry/1.0/img/blackfire-registry-icon.png',
+    // NOTE: unlike basePath, env values are baked into list.json by
+    // `node processing`, which runs BEFORE build_all_branches.sh's 1.0->branch
+    // sed. So the version segment here is NOT auto-rewritten — hardcode the
+    // real schema version (1.1), or Kasm gets a 404 icon.
+    icon: 'https://blackfire-tech.github.io/kasm_registry/1.1/img/blackfire-registry-icon.png',
     listUrl: 'https://blackfire-tech.github.io/kasm_registry/',
     contactUrl: 'https://blackfire.tech',
   },
