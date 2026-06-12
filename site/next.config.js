@@ -21,7 +21,7 @@ const nextConfig = {
     name: 'Blackfire Technology',
     description:
       "Blackfire Technology's Kasm Workspaces registry — privacy-first apps and custom workspaces.",
-    icon: 'https://branding.blackfire.tech/Blackfire/SVG%20-%20for%20web/blackfire-logomark-colour.svg',
+    icon: 'https://blackfire-tech.github.io/kasm_registry/1.0/img/blackfire-registry-icon.png',
     listUrl: 'https://blackfire-tech.github.io/kasm_registry/',
     contactUrl: 'https://blackfire.tech',
   },
